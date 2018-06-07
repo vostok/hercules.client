@@ -8,9 +8,11 @@ default:
   install:
     - Vostok.Airlock.Client/bin/Release/netstandard2.0/Vostok.Airlock.Client.dll
     - module vostok.commons
+    - module vostok.logging
 
   deps:
     - vostok.commons@dev
+    - vostok.logging@dev
 
 notests *default:
   build:
