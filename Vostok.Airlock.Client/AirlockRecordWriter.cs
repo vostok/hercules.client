@@ -1,15 +1,20 @@
 ﻿using System;
 using Vostok.Airlock.Client.Abstractions;
+using Vostok.Commons;
 using Vostok.Commons.Binary;
+using Vostok.Logging.Abstractions;
+using Vostok.Logging.Abstractions.Extensions;
 
 namespace Vostok.Airlock.Client
 {
     internal class AirlockRecordWriter : IAirlockRecordWriter
     {
+        private readonly ILog log;
         private readonly int maxRecordSize;
 
-        public AirlockRecordWriter(int maxRecordSize)
+        public AirlockRecordWriter(ILog log, int maxRecordSize)
         {
+            this.log = log;
             this.maxRecordSize = maxRecordSize;
         }
 
@@ -36,6 +41,8 @@ namespace Vostok.Airlock.Client
 
                 if (recordSize > maxRecordSize)
                 {
+                    log.Warn($"Discarded record with size = {DataSize.FromBytes(recordSize)} larger than max allowed size = {DataSize.FromBytes(maxRecordSize)}");
+
                     binaryWriter.Position = startingPosition;
 
                     return false;
@@ -55,8 +62,10 @@ namespace Vostok.Airlock.Client
 
                 return true;
             }
-            catch
+            catch (Exception exception)
             {
+                log.Error(exception);
+
                 binaryWriter.Position = startingPosition;
 
                 return false;

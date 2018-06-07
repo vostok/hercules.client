@@ -2,12 +2,14 @@
 using System.Collections.Concurrent;
 using System.Threading;
 using Vostok.Airlock.Client.Abstractions;
+using Vostok.Logging.Abstractions;
 
 namespace Vostok.Airlock.Client
 {
     public class AirlockGateClient : IAirlockGateClient
     {
         private readonly AirlockConfig config;
+        private readonly ILog log;
 
         private readonly IMemoryManager memoryManager;
         private readonly ConcurrentDictionary<string, Lazy<IBufferPool>> bufferPools;
@@ -15,13 +17,14 @@ namespace Vostok.Airlock.Client
 
         private int lostRecordsCounter;
 
-        public AirlockGateClient(AirlockConfig config)
+        public AirlockGateClient(ILog log, AirlockConfig config)
         {
+            this.log = log;
             this.config = config;
 
             memoryManager = new MemoryManager(this.config.MaximumMemoryConsumption.Bytes);
             bufferPools = new ConcurrentDictionary<string, Lazy<IBufferPool>>();
-            recordWriter = new AirlockRecordWriter((int) this.config.MaximumRecordSize.Bytes);
+            recordWriter = new AirlockRecordWriter(this.log, (int) this.config.MaximumRecordSize.Bytes);
         }
 
         public int LostRecordsCount => lostRecordsCounter;
