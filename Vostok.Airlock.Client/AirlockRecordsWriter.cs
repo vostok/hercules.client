@@ -3,7 +3,6 @@ using Vostok.Airlock.Client.Abstractions;
 using Vostok.Commons;
 using Vostok.Commons.Binary;
 using Vostok.Logging.Abstractions;
-using Vostok.Logging.Abstractions.Extensions;
 
 namespace Vostok.Airlock.Client
 {
