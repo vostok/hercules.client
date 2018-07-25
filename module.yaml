@@ -7,9 +7,9 @@ notests *default:
 
   install:
     - Vostok.Airlock.Client/bin/Release/netstandard2.0/Vostok.Airlock.Client.dll
-    - Vostok.Airlock.Client.Abstractions/bin/Release/netstandard2.0/Vostok.Airlock.Client.Abstractions.dll
 
   deps:
+    - vostok.airlock.client.abstractions@dev
     - vostok.commons@dev
     - vostok.logging.abstractions@dev
     - vostok.devtools

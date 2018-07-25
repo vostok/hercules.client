@@ -43,10 +43,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Vostok.Airlock.Client.Abstractions\Vostok.Airlock.Client.Abstractions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Reference Include="Vostok.Airlock.Client.Abstractions">
+      <HintPath>..\..\vostok.airlock.client.abstractions\Vostok.Airlock.Client.Abstractions\bin\Release\netstandard2.0\Vostok.Airlock.Client.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Vostok.Commons">
       <HintPath>..\..\vostok.commons\Vostok.Commons\bin\Release\netstandard2.0\Vostok.Commons.dll</HintPath>
     </Reference>
