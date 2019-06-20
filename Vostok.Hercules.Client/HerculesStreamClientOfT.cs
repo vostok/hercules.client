@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -158,21 +156,6 @@ namespace Vostok.Hercules.Client
             return writer.FilledSegment;
         }
 
-        private ReadStreamPayload<T> ParseReadResponseBody([NotNull] Response response)
-        {
-
-            var reader = new BinaryBufferReader(response.Content.Buffer, response.Content.Offset)
-            {
-                Endianness = Endianness.Big
-            };
-
-            var coordinates = StreamCoordinatesReader.Read(reader);
-
-            var events = EventsBinaryReader.Read(response.Content.Buffer, reader.Position, eventBuilderProvider, log);
-
-            return new ReadStreamPayload<T>(events, coordinates);
-        }
-
         private static SeekToEndStreamPayload ParseSeekToEndResponseBody([NotNull] Response response)
         {
             var reader = new BinaryBufferReader(response.Content.Buffer, response.Content.Offset)
@@ -183,6 +166,20 @@ namespace Vostok.Hercules.Client
             var coordinates = StreamCoordinatesReader.Read(reader);
 
             return new SeekToEndStreamPayload(coordinates);
+        }
+
+        private ReadStreamPayload<T> ParseReadResponseBody([NotNull] Response response)
+        {
+            var reader = new BinaryBufferReader(response.Content.Buffer, response.Content.Offset)
+            {
+                Endianness = Endianness.Big
+            };
+
+            var coordinates = StreamCoordinatesReader.Read(reader);
+
+            var events = EventsBinaryReader.Read(response.Content.Buffer, reader.Position, eventBuilderProvider, log);
+
+            return new ReadStreamPayload<T>(events, coordinates);
         }
     }
 }

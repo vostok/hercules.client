@@ -7,12 +7,12 @@ namespace Vostok.Hercules.Client.Serialization.Readers
 {
     internal class BinaryBufferReader : Commons.Binary.BinaryBufferReader, IBinaryBufferReader
     {
-        public bool SkipMode { get; set; }
-        
         public BinaryBufferReader([NotNull] byte[] buffer, long position)
             : base(buffer, position)
         {
         }
+
+        public bool SkipMode { get; set; }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ReadString(Encoding encoding)
