@@ -10,11 +10,10 @@ namespace Vostok.Hercules.Client
     [PublicAPI]
     public class HerculesSinkGcSettings
     {
-        // CR(iloktionov): Rename according to its meaning.
         /// <summary>
-        /// Base delay between attempts of removing extra buffers.
+        /// Base delay after last buffer was reserved.
         /// </summary>
-        public TimeSpan Period { get; set; } = 10.Minutes();
+        public TimeSpan BaseDelayAfterReserve { get; set; } = 10.Minutes();
 
         /// <summary>
         /// Base cooldown between attempts of removing extra buffers.
@@ -31,10 +30,9 @@ namespace Vostok.Hercules.Client
         /// </summary>
         public double MinimumStreamMemoryLimitUtilization { get; set; } = 0.2;
 
-        // CR(iloktionov): Transform this into just the minimum nonreducible number of buffers (1 by default?). Rename accordingly.
         /// <summary>
         /// Minimum amount of allocated buffers, needed for triggering removing extra buffers.
         /// </summary>
-        public int MinimumBuffersLimitUtilization { get; set; } = 2;
+        public int MinimumBuffersLimit { get; set; } = 1;
     }
 }
