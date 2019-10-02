@@ -20,19 +20,19 @@ namespace Vostok.Hercules.Client.Sink.Analyzer
         {
             var now = DateTime.UtcNow.Ticks;
 
-            if (now - bufferPool.MemoryManager.LastReserveTicks < settings.Period.Ticks)
+            if (now - bufferPool.MemoryManager.LastReserveTicks <= settings.BaseDelayAfterReserve.Ticks)
                 return false;
 
-            if (now - lastFreeMemoryAttemptTicks < settings.Cooldown.Ticks)
+            if (now - lastFreeMemoryAttemptTicks <= settings.Cooldown.Ticks)
                 return false;
 
-            if (globalMemoryManager.Capacity < settings.MinimumGlobalMemoryLimitUtilization * globalMemoryManager.CapacityLimit)
+            if (globalMemoryManager.Capacity <= settings.MinimumGlobalMemoryLimitUtilization * globalMemoryManager.CapacityLimit)
                 return false;
 
-            if (bufferPool.MemoryManager.Capacity < settings.MinimumStreamMemoryLimitUtilization * bufferPool.MemoryManager.CapacityLimit)
+            if (bufferPool.MemoryManager.Capacity <= settings.MinimumStreamMemoryLimitUtilization * bufferPool.MemoryManager.CapacityLimit)
                 return false;
 
-            if (bufferPool.Count() < settings.MinimumBuffersLimitUtilization)
+            if (bufferPool.Count() <= settings.MinimumBuffersLimit)
                 return false;
 
             lastFreeMemoryAttemptTicks = now;
