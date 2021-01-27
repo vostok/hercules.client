@@ -26,14 +26,7 @@ namespace Vostok.Hercules.Client.Sink.Job
             this.requestTimeout = requestTimeout;
         }
 
-        public bool IsHealthy
-        {
-            get
-            {
-                var status = lastSendResult.Status;
-                return status == HerculesStatus.Success || status == HerculesStatus.Canceled;
-            }
-        }
+        public bool IsHealthy => IsHealthyStatus(lastSendResult.Status);
 
         public async Task SendAsync(CancellationToken cancellationToken)
         {
@@ -50,5 +43,7 @@ namespace Vostok.Hercules.Client.Sink.Job
 
         public Task WaitForNextSendAsync(CancellationToken cancellationToken)
             => planner.WaitForNextSendAsync(lastSendResult, cancellationToken).SilentlyContinue();
+
+        private static bool IsHealthyStatus(HerculesStatus status) => status == HerculesStatus.Success || status == HerculesStatus.Canceled;
     }
 }
