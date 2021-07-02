@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Vostok.Commons.Binary;
 using Vostok.Commons.Threading;
@@ -12,8 +11,8 @@ namespace Vostok.Hercules.Client.Serialization.Builders
     internal class BinaryEventBuilder : IHerculesEventBuilder, IDisposable
     {
         private static readonly Func<Guid> GenerateGuid = RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
-            ? (Func<Guid>)GenerateGuidForLinux
-            : GuidNewGuid;
+            ? (Func<Guid>)GuidGenerator.GenerateNotCryptoQualityGuid
+            : Guid.NewGuid;
 
         private readonly IBinaryWriter binaryWriter;
         private readonly Func<DateTimeOffset> timeProvider;
@@ -116,28 +115,6 @@ namespace Vostok.Hercules.Client.Serialization.Builders
 
             using (binaryWriter.JumpTo(timestampPosition))
                 binaryWriter.Write(EpochHelper.ToUnixTimeUtcTicks(timestamp.UtcDateTime));
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static unsafe Guid GenerateGuidForLinux()
-        {
-            var bytes = stackalloc byte[16];
-            var dst = bytes;
-
-            var random = ThreadSafeRandom.ObtainThreadStaticRandom();
-            for (var i = 0; i < 4; i++)
-            {
-                *(int*)dst = random.Next();
-                dst += 4;
-            }
-
-            return *(Guid*)bytes;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Guid GuidNewGuid()
-        {
-            return Guid.NewGuid();
         }
     }
 }
