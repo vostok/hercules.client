@@ -7,7 +7,7 @@ namespace Vostok.Hercules.Client.Tests.Functional.Helpers
 {
     internal static class ManagementClientExtensions
     {
-        private static readonly TimeSpan Timeout = 20.Seconds();
+        private static readonly TimeSpan Timeout = 30.Seconds();
 
         public static IDisposable CreateTemporaryStream(this IHerculesManagementClient client, out string name, int? partitions = null, string[] shardingKey = null)
         {

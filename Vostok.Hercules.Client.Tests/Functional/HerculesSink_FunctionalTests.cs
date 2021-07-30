@@ -5,6 +5,7 @@ using Vostok.Hercules.Client.Tests.Functional.Helpers;
 
 namespace Vostok.Hercules.Client.Tests.Functional
 {
+    [Platform("Unix", Reason = "Doesn't work on Windows because Kafka topic deletion doesn't work due to Kafka's guarantees")]
     [TestFixture]
     internal class HerculesSink_FunctionalTests : HerculesSender_FunctionalTests
     {

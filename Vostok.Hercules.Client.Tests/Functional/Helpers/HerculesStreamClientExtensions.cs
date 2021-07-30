@@ -51,7 +51,7 @@ namespace Vostok.Hercules.Client.Tests.Functional.Helpers
             int clientShards,
             StreamCoordinates coordinates = null)
         {
-            var timeout = 20.Seconds();
+            var timeout = 30.Seconds();
 
             var stopwatch = Stopwatch.StartNew();
             var eventsRead = 0;
