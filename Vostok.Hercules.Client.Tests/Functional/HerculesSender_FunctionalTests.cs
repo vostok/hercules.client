@@ -10,7 +10,7 @@ namespace Vostok.Hercules.Client.Tests.Functional
 {
     internal abstract class HerculesSender_FunctionalTests
     {
-        protected static readonly TimeSpan Timeout = 20.Seconds();
+        protected static readonly TimeSpan Timeout = 30.Seconds();
         protected readonly DateTimeOffset Timestamp = DateTimeOffset.UtcNow;
 
         protected Action<string, Action<IHerculesEventBuilder>> PushEvent;

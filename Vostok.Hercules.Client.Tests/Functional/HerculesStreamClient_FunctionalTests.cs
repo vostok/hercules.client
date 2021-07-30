@@ -9,9 +9,11 @@ using Vostok.Hercules.Client.Tests.Functional.Helpers;
 
 namespace Vostok.Hercules.Client.Tests.Functional
 {
+    [Platform("Unix", Reason = "Doesn't work on Windows because Kafka topic deletion doesn't work due to Kafka's guarantees")]
+    [TestFixture]
     internal class HerculesStreamClient_FunctionalTests
     {
-        private static readonly TimeSpan Timeout = 20.Seconds();
+        private static readonly TimeSpan Timeout = 30.Seconds();
 
         private Helpers.Hercules hercules;
 
