@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using FluentAssertions.Extensions;
 using Vostok.Hercules.Client.Abstractions;
 using Vostok.Hercules.Client.Abstractions.Queries;
@@ -21,7 +22,13 @@ namespace Vostok.Hercules.Client.Tests.Functional.Helpers
 
             client.CreateStream(createStreamQuery, Timeout).EnsureSuccess();
 
-            return new Disposable(() => client.DeleteStream(streamName, Timeout));
+            return CreateStreamDeletion(client, streamName);
+        }
+
+        // NOTE: Stream deletion doesn't work on Windows due to Kafka's guarantees
+        private static IDisposable CreateStreamDeletion(IHerculesManagementClient client, string streamName)
+        {
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? new Disposable(() => client.DeleteStream(streamName, Timeout)) : new Disposable(() => {});
         }
     }
 }

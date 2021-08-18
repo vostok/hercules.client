@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using FluentAssertions;
 using FluentAssertions.Extensions;
 using NUnit.Framework;
@@ -9,7 +10,6 @@ using Vostok.Hercules.Client.Tests.Functional.Helpers;
 
 namespace Vostok.Hercules.Client.Tests.Functional
 {
-    [Platform("Unix", Reason = "Doesn't work on Windows because Kafka topic deletion doesn't work due to Kafka's guarantees")]
     [TestFixture]
     internal class HerculesManagementClient_Tests
     {
@@ -58,10 +58,13 @@ namespace Vostok.Hercules.Client.Tests.Functional
             }
             finally
             {
-                managementClient.DeleteStream(name, Timeout);
+                // NOTE: Doesn't work on Windows due to Kafka's guarantees
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    managementClient.DeleteStream(name, Timeout);
             }
         }
 
+        [Platform("Unix", Reason = "Doesn't work on Windows because Kafka topic deletion doesn't work due to Kafka's guarantees")]
         [Test]
         public void Should_create_and_delete_stream()
         {
