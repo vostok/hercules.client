@@ -1,3 +1,7 @@
+## 0.1.15 (21-09-2021):
+
+Use synchronous sending instead of fire & foget for HerculesSink.
+
 ## 0.1.14 (20-07-2021):
 
 Optimize GUID creation on Linux
