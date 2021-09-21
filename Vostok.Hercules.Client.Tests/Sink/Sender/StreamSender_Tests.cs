@@ -148,7 +148,7 @@ namespace Vostok.Hercules.Client.Tests.Sink.Sender
 
             Send();
 
-            requestSender.Received(3).FireAndForgetAsync(Arg.Any<string>(), "custom", Arg.Any<ValueDisposable<Content>>(), Arg.Any<TimeSpan>(), Arg.Any<CancellationToken>());
+            requestSender.Received(3).SendAsync(Arg.Any<string>(), "custom", Arg.Any<ValueDisposable<Content>>(), Arg.Any<TimeSpan>(), Arg.Any<CancellationToken>());
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace Vostok.Hercules.Client.Tests.Sink.Sender
         {
             Send();
 
-            requestSender.Received(3).FireAndForgetAsync(Arg.Any<string>(), GlobalApiKey, Arg.Any<ValueDisposable<Content>>(), Arg.Any<TimeSpan>(), Arg.Any<CancellationToken>());
+            requestSender.Received(3).SendAsync(Arg.Any<string>(), GlobalApiKey, Arg.Any<ValueDisposable<Content>>(), Arg.Any<TimeSpan>(), Arg.Any<CancellationToken>());
         }
 
         [Test]
@@ -164,7 +164,7 @@ namespace Vostok.Hercules.Client.Tests.Sink.Sender
         {
             Send();
 
-            requestSender.Received(3).FireAndForgetAsync(StreamName, Arg.Any<string>(), Arg.Any<ValueDisposable<Content>>(), Timeout, cancellation.Token);
+            requestSender.Received(3).SendAsync(StreamName, Arg.Any<string>(), Arg.Any<ValueDisposable<Content>>(), Timeout, cancellation.Token);
         }
 
         [Test]
@@ -271,7 +271,7 @@ namespace Vostok.Hercules.Client.Tests.Sink.Sender
             if (statuses.Length == 0)
                 return;
 
-            requestSender.FireAndForgetAsync(
+            requestSender.SendAsync(
                     Arg.Any<string>(),
                     Arg.Any<string>(),
                     Arg.Any<ValueDisposable<Content>>(),
