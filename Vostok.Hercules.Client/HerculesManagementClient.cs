@@ -112,6 +112,8 @@ namespace Vostok.Hercules.Client
                     request = request.WithContent(Serializer.Serialize(requestDto));
                 }
 
+                request = request.WithAdditionalQueryParameter("timeoutMs", "30000");
+
                 var result = await client.SendAsync(request, timeout).ConfigureAwait(false);
                 var status = analyzer.Analyze(result.Response, out var errorMessage);
 
