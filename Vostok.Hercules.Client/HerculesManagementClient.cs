@@ -146,7 +146,7 @@ namespace Vostok.Hercules.Client
 
         private static Request WithManagementApiTimeout(Request request, TimeSpan timeSpan)
         {
-            return request.WithAdditionalQueryParameter("timeoutMs", Math.Min(30000, timeSpan.Milliseconds));
+            return request.WithAdditionalQueryParameter("timeoutMs", Math.Min(30000, timeSpan.TotalMilliseconds));
         }
     }
 }
