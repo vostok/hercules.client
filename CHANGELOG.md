@@ -1,3 +1,7 @@
+## 0.1.16 (18-10-2021):
+
+Added timeout parameter usage for HerculesManagementClient.
+
 ## 0.1.15 (21-09-2021):
 
 Use synchronous sending instead of fire & foget for HerculesSink.
