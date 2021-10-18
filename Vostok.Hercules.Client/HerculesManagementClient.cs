@@ -112,9 +112,7 @@ namespace Vostok.Hercules.Client
                     request = request.WithContent(Serializer.Serialize(requestDto));
                 }
 
-                request = request.WithAdditionalQueryParameter("timeoutMs", "30000");
-
-                var result = await client.SendAsync(request, timeout).ConfigureAwait(false);
+                var result = await client.SendAsync(WithManagementApiTimeout(request, timeout), timeout).ConfigureAwait(false);
                 var status = analyzer.Analyze(result.Response, out var errorMessage);
 
                 return new HerculesResult(status, errorMessage);
@@ -130,7 +128,7 @@ namespace Vostok.Hercules.Client
         {
             try
             {
-                var result = await client.SendAsync(request, timeout).ConfigureAwait(false);
+                var result = await client.SendAsync(WithManagementApiTimeout(request, timeout), timeout).ConfigureAwait(false);
                 var payload = default(TPayload);
 
                 var status = analyzer.Analyze(result.Response, out var errorMessage);
@@ -144,6 +142,11 @@ namespace Vostok.Hercules.Client
                 log.Error(error);
                 return new HerculesResult<TPayload>(HerculesStatus.UnknownError, default, error.Message);
             }
+        }
+
+        private static Request WithManagementApiTimeout(Request request, TimeSpan timeSpan)
+        {
+            return request.WithAdditionalQueryParameter("timeoutMs", Math.Min(30000, timeSpan.Milliseconds));
         }
     }
 }
