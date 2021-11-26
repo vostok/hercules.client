@@ -12,14 +12,27 @@ namespace Vostok.Hercules.Client.Tests.Functional
     public class Hercules : IDisposable
     {
         private static HerculesCluster cluster;
-        private static ILog log;
+        private static readonly ILog Log = new SynchronousConsoleLog();
 
         [OneTimeSetUp]
         public void StartHercules()
         {
-            log = new SynchronousConsoleLog();
+            const int retriesCount = 3;
 
-            cluster = HerculesCluster.DeployNew(TestContext.CurrentContext.TestDirectory, log.WithMinimumLevel(LogLevel.Warn));
+            for (var i = 0; i < retriesCount; i++)
+            {
+                try
+                {
+                    cluster = HerculesCluster.DeployNew(TestContext.CurrentContext.TestDirectory, Log.WithMinimumLevel(LogLevel.Warn));
+                }
+                catch (Exception e)
+                {
+                    if (i + 1 == retriesCount)
+                        throw new Exception($"Unable to start Hercules cluster after {retriesCount} retries.", e);
+                    continue;
+                }
+                break;
+            }
 
             string GetApiKey() => cluster.ApiKey;
 
@@ -44,13 +57,13 @@ namespace Vostok.Hercules.Client.Tests.Functional
 
             Management = new HerculesManagementClient(
                 managementSettings,
-                log);
+                Log);
 
-            Sink = new HerculesSink(sinkSettings, log);
+            Sink = new HerculesSink(sinkSettings, Log);
 
-            Stream = new HerculesStreamClient(streamSettings, log);
+            Stream = new HerculesStreamClient(streamSettings, Log);
 
-            Gate = new HerculesGateClient(gateSettings, log);
+            Gate = new HerculesGateClient(gateSettings, Log);
         }
 
         public static HerculesSink Sink { get; private set; }
@@ -61,7 +74,7 @@ namespace Vostok.Hercules.Client.Tests.Functional
         [OneTimeTearDown]
         public void Dispose()
         {
-            log.Info("Rented in BufferPools: {Rented}.", BufferPool.Rented);
+            Log.Info("Rented in BufferPools: {Rented}.", BufferPool.Rented);
 
             Sink?.Dispose();
             cluster?.Dispose();
