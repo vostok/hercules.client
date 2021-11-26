@@ -8,12 +8,14 @@ using Vostok.Logging.Console;
 
 namespace Vostok.Hercules.Client.Tests.Functional.Helpers
 {
+    [SetUpFixture]
     public class Hercules : IDisposable
     {
-        private readonly HerculesCluster cluster;
-        private readonly ILog log;
+        private static HerculesCluster cluster;
+        private static ILog log;
 
-        public Hercules()
+        [OneTimeSetUp]
+        public void StartHercules()
         {
             log = new SynchronousConsoleLog();
 
@@ -51,11 +53,12 @@ namespace Vostok.Hercules.Client.Tests.Functional.Helpers
             Gate = new HerculesGateClient(gateSettings, log);
         }
 
-        public HerculesSink Sink { get; }
-        public HerculesManagementClient Management { get; }
-        public HerculesGateClient Gate { get; }
-        public HerculesStreamClient Stream { get; }
+        public static HerculesSink Sink { get; private set; }
+        public static HerculesManagementClient Management { get; private set; }
+        public static HerculesGateClient Gate { get; private set; }
+        public static HerculesStreamClient Stream { get; private set; }
 
+        [OneTimeSetUp]
         public void Dispose()
         {
             log.Info("Rented in BufferPools: {Rented}.", BufferPool.Rented);

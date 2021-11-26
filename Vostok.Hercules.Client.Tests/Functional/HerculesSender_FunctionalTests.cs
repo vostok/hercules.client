@@ -14,20 +14,6 @@ namespace Vostok.Hercules.Client.Tests.Functional
         protected readonly DateTimeOffset Timestamp = DateTimeOffset.UtcNow;
 
         protected Action<string, Action<IHerculesEventBuilder>> PushEvent;
-        protected Helpers.Hercules Hercules;
-
-        [SetUp]
-        public void Setup()
-        {
-            if (Hercules == null)
-                Hercules = new Helpers.Hercules();
-        }
-
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            Hercules?.Dispose();
-        }
 
         [Test]
         public void Should_not_fail_on_duplicate_keys()
@@ -118,14 +104,14 @@ namespace Vostok.Hercules.Client.Tests.Functional
 
         private void Write_and_read_single_event(Action<IHerculesEventBuilder> eventBuilder)
         {
-            using (Hercules.Management.CreateTemporaryStream(out var stream))
+            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream))
             {
                 var expectedEvent = eventBuilder.ToEvent();
 
                 PushEvent.ToStream(stream)(eventBuilder);
-                Hercules.Stream.WaitForAnyRecord(stream);
+                Helpers.Hercules.Stream.WaitForAnyRecord(stream);
 
-                var readResult = Hercules.Stream.ReadEvents(stream, 1);
+                var readResult = Helpers.Hercules.Stream.ReadEvents(stream, 1);
 
                 readResult.Single().Should().Be(expectedEvent);
             }

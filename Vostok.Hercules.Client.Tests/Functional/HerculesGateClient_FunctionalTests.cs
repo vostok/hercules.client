@@ -9,7 +9,7 @@ namespace Vostok.Hercules.Client.Tests.Functional
     internal class HerculesGateClientFunctionalTests : HerculesSender_FunctionalTests
     {
         public HerculesGateClientFunctionalTests() =>
-            PushEvent = (stream, e) => Hercules.Gate.Insert(new InsertEventsQuery(stream, new[] {e.ToEvent()}), Timeout);
+            PushEvent = (stream, e) => Helpers.Hercules.Gate.Insert(new InsertEventsQuery(stream, new[] {e.ToEvent()}), Timeout);
 
         [TestCase(10000, 1)]
         [TestCase(10000, 10)]
@@ -18,13 +18,13 @@ namespace Vostok.Hercules.Client.Tests.Functional
         {
             var events = TestHelpers.GenerateEventBuilders(count).ToEvents();
 
-            using (Hercules.Management.CreateTemporaryStream(out var stream))
+            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream))
             {
                 var query = new InsertEventsQuery(stream, events);
 
-                Hercules.Gate.Insert(query, Timeout);
+                Helpers.Hercules.Gate.Insert(query, Timeout);
 
-                var actualEvents = Hercules.Stream.ReadEvents(stream, count, count / 4);
+                var actualEvents = Helpers.Hercules.Stream.ReadEvents(stream, count, count / 4);
 
                 actualEvents.ShouldBeEqual(events);
             }
