@@ -14,32 +14,17 @@ namespace Vostok.Hercules.Client.Tests.Functional
     {
         private static readonly TimeSpan Timeout = 30.Seconds();
 
-        private Helpers.Hercules hercules;
-
-        [SetUp]
-        public void Setup()
-        {
-            if (hercules == null)
-                hercules = new Helpers.Hercules();
-        }
-
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            hercules.Dispose();
-        }
-
         [TestCase(50000, 1)]
         [TestCase(50000, 3)]
         public void Should_read_events_in_many_client_shards(int count, int clientShards)
         {
             var builders = TestHelpers.GenerateEventBuilders(count);
 
-            using (hercules.Management.CreateTemporaryStream(out var stream))
+            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream))
             {
-                hercules.Gate.Insert(new InsertEventsQuery(stream, builders.ToEvents()), Timeout);
+                Helpers.Hercules.Gate.Insert(new InsertEventsQuery(stream, builders.ToEvents()), Timeout);
 
-                var shards = hercules.Stream.ReadEvents(stream, count, count / 10, clientShards);
+                var shards = Helpers.Hercules.Stream.ReadEvents(stream, count, count / 10, clientShards);
 
                 shards.Should().HaveCount(clientShards);
 
@@ -60,11 +45,11 @@ namespace Vostok.Hercules.Client.Tests.Functional
 
             var events = TestHelpers.GenerateEventBuilders(count, b => b.AddValue("shard", random.Next(0, 30))).ToEvents();
 
-            using (hercules.Management.CreateTemporaryStream(out var stream, partitions, new[] {"shard"}))
+            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream, partitions, new[] {"shard"}))
             {
-                hercules.Gate.Insert(new InsertEventsQuery(stream, events), Timeout);
+                Helpers.Hercules.Gate.Insert(new InsertEventsQuery(stream, events), Timeout);
 
-                var shards = hercules.Stream.ReadEvents(stream, count, count / 10, clientShards);
+                var shards = Helpers.Hercules.Stream.ReadEvents(stream, count, count / 10, clientShards);
 
                 shards.SelectMany(x => x).ShouldBeEqual(events);
 
@@ -91,18 +76,18 @@ namespace Vostok.Hercules.Client.Tests.Functional
             var part1 = events.Take(30).ToList();
             var part2 = events.Skip(30).ToList();
 
-            using (hercules.Management.CreateTemporaryStream(out var stream))
+            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream))
             {
-                hercules.Gate.Insert(new InsertEventsQuery(stream, part1), Timeout);
+                Helpers.Hercules.Gate.Insert(new InsertEventsQuery(stream, part1), Timeout);
 
-                hercules.Stream.ReadEvents(stream, 30).ShouldBeEqual(part1);
+                Helpers.Hercules.Stream.ReadEvents(stream, 30).ShouldBeEqual(part1);
 
-                var end = hercules.Stream.SeekToEnd(new SeekToEndStreamQuery(stream), Timeout);
+                var end = Helpers.Hercules.Stream.SeekToEnd(new SeekToEndStreamQuery(stream), Timeout);
                 end.EnsureSuccess();
 
-                hercules.Gate.Insert(new InsertEventsQuery(stream, part2), Timeout);
+                Helpers.Hercules.Gate.Insert(new InsertEventsQuery(stream, part2), Timeout);
 
-                hercules.Stream.ReadEvents(stream, 70, end.Payload.Next).ShouldBeEqual(part2);
+                Helpers.Hercules.Stream.ReadEvents(stream, 70, end.Payload.Next).ShouldBeEqual(part2);
             }
         }
     }
