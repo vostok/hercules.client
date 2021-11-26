@@ -104,14 +104,14 @@ namespace Vostok.Hercules.Client.Tests.Functional
 
         private void Write_and_read_single_event(Action<IHerculesEventBuilder> eventBuilder)
         {
-            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream))
+            using (Hercules.Management.CreateTemporaryStream(out var stream))
             {
                 var expectedEvent = eventBuilder.ToEvent();
 
                 PushEvent.ToStream(stream)(eventBuilder);
-                Helpers.Hercules.Stream.WaitForAnyRecord(stream);
+                Hercules.Stream.WaitForAnyRecord(stream);
 
-                var readResult = Helpers.Hercules.Stream.ReadEvents(stream, 1);
+                var readResult = Hercules.Stream.ReadEvents(stream, 1);
 
                 readResult.Single().Should().Be(expectedEvent);
             }

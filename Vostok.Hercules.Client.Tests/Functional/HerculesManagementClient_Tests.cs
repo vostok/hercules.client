@@ -15,7 +15,7 @@ namespace Vostok.Hercules.Client.Tests.Functional
     {
         private static readonly TimeSpan Timeout = 30.Seconds();
 
-        private readonly HerculesManagementClient managementClient = Helpers.Hercules.Management;
+        private readonly HerculesManagementClient managementClient = Hercules.Management;
 
         [TestCase(1, 10000, null)]
         [TestCase(3, 40000, null)]

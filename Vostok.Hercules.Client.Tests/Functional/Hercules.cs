@@ -6,7 +6,7 @@ using Vostok.Hercules.Local;
 using Vostok.Logging.Abstractions;
 using Vostok.Logging.Console;
 
-namespace Vostok.Hercules.Client.Tests.Functional.Helpers
+namespace Vostok.Hercules.Client.Tests.Functional
 {
     [SetUpFixture]
     public class Hercules : IDisposable
@@ -58,7 +58,7 @@ namespace Vostok.Hercules.Client.Tests.Functional.Helpers
         public static HerculesGateClient Gate { get; private set; }
         public static HerculesStreamClient Stream { get; private set; }
 
-        [OneTimeSetUp]
+        [OneTimeTearDown]
         public void Dispose()
         {
             log.Info("Rented in BufferPools: {Rented}.", BufferPool.Rented);
