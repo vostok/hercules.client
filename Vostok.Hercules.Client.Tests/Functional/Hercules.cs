@@ -28,7 +28,9 @@ namespace Vostok.Hercules.Client.Tests.Functional
                 catch (Exception e)
                 {
                     if (i + 1 == retriesCount)
-                        throw new Exception($"Unable to start Hercules cluster after {retriesCount} retries.", e);
+                        throw new Exception($"Unable to start Hercules cluster after {retriesCount} tries.", e);
+                    Log.Warn($"Retrying Hercules.Local deployment... Attempt #{i + 1}...");
+                    cluster?.Dispose();
                     continue;
                 }
                 break;
