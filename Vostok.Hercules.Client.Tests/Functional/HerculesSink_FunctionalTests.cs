@@ -9,7 +9,7 @@ namespace Vostok.Hercules.Client.Tests.Functional
     internal class HerculesSink_FunctionalTests : HerculesSender_FunctionalTests
     {
         public HerculesSink_FunctionalTests() =>
-            PushEvent = (stream, e) => Helpers.Hercules.Sink.Put(stream, e);
+            PushEvent = (stream, e) => Hercules.Sink.Put(stream, e);
 
         [TestCase(10000, 1)]
         [TestCase(10000, 10)]
@@ -18,11 +18,11 @@ namespace Vostok.Hercules.Client.Tests.Functional
         {
             var builders = TestHelpers.GenerateEventBuilders(count);
 
-            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream))
+            using (Hercules.Management.CreateTemporaryStream(out var stream))
             {
                 builders.PushEvents(PushEvent.ToStream(stream), threads);
 
-                var events = Helpers.Hercules.Stream.ReadEvents(stream, count, count / 4);
+                var events = Hercules.Stream.ReadEvents(stream, count, count / 4);
 
                 events.ShouldBeEqual(builders.ToEvents());
             }
@@ -33,11 +33,11 @@ namespace Vostok.Hercules.Client.Tests.Functional
         {
             var builders = TestHelpers.GenerateEventBuilders(count);
 
-            using (Helpers.Hercules.Management.CreateTemporaryStream(out var stream))
+            using (Hercules.Management.CreateTemporaryStream(out var stream))
             {
                 builders.PushEvents(PushEvent.ToStream(stream));
 
-                var shards = Helpers.Hercules.Stream.ReadEvents(stream, count, count / 4, 3);
+                var shards = Hercules.Stream.ReadEvents(stream, count, count / 4, 3);
 
                 shards.SelectMany(x => x).ShouldBeEqual(builders.ToEvents());
 
