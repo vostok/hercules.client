@@ -6,7 +6,6 @@
   <Import Project="..\..\vostok.commons.binary\BinaryBufferReader.props" Condition="Exists('..\..\vostok.commons.binary\BinaryBufferReader.props')" />
   <Import Project="..\..\vostok.commons.binary\BinaryBufferWriter.props" Condition="Exists('..\..\vostok.commons.binary\BinaryBufferWriter.props')" />
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release</Configurations>
     <LangVersion>7.2</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
