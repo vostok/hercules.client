@@ -29,20 +29,20 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Vostok.Hercules.Client.Abstractions">
-      <HintPath>..\..\vostok.hercules.client.abstractions\Vostok.Hercules.Client.Abstractions\bin\Release\netstandard2.0\Vostok.Hercules.Client.Abstractions.dll</HintPath>
+      <HintPath>..\..\vostok.hercules.client.abstractions\Vostok.Hercules.Client.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Hercules.Client.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Vostok.Logging.Abstractions">
-      <HintPath>..\..\vostok.logging.abstractions\Vostok.Logging.Abstractions\bin\Release\netstandard2.0\Vostok.Logging.Abstractions.dll</HintPath>
+      <HintPath>..\..\vostok.logging.abstractions\Vostok.Logging.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Vostok.Logging.Console">
-      <HintPath>..\..\vostok.logging.console\Vostok.Logging.Console\bin\Release\netstandard2.0\Vostok.Logging.Console.dll</HintPath>
+      <HintPath>..\..\vostok.logging.console\Vostok.Logging.Console\bin\Release\$(ReferencesFramework)\Vostok.Logging.Console.dll</HintPath>
     </Reference>
     <Reference Include="Vostok.ClusterClient.Core">
-      <HintPath>..\..\vostok.clusterclient.core\Vostok.ClusterClient.Core\bin\Release\netstandard2.0\Vostok.ClusterClient.Core.dll</HintPath>
+      <HintPath>..\..\vostok.clusterclient.core\Vostok.ClusterClient.Core\bin\Release\$(ReferencesFramework)\Vostok.ClusterClient.Core.dll</HintPath>
     </Reference>
     <Reference Include="Vostok.Hercules.Local">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.hercules.local\Vostok.Hercules.Local\bin\Release\netstandard2.0\Vostok.Hercules.Local.dll</HintPath>
+      <HintPath>..\..\vostok.hercules.local\Vostok.Hercules.Local\bin\Release\$(ReferencesFramework)\Vostok.Hercules.Local.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
