@@ -24,6 +24,8 @@ notests *default:
 
 full-build > notests: 
   deps:
+    - -vostok.devtools
+    - vostok.devtools@with-net6.0
     - vostok.hercules.local
     - vostok.logging.console
     - vostok.commons.testing/src
