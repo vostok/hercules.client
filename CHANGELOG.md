@@ -1,3 +1,7 @@
+## 0.1.17 (06-12-2021):
+
+Added `net6.0` target.
+
 ## 0.1.16 (18-10-2021):
 
 Added timeout parameter usage for HerculesManagementClient.
