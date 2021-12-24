@@ -93,6 +93,10 @@ namespace Vostok.Hercules.Client.Serialization.Readers
                         builder.AddValue(key, reader.ReadInt32());
                         break;
 
+                    case TagType.Double:
+                        builder.AddValue(key, reader.ReadDouble());
+                        break;
+
                     case TagType.Flag:
                         builder.AddValue(key, reader.ReadBool());
                         break;
@@ -103,10 +107,6 @@ namespace Vostok.Hercules.Client.Serialization.Readers
 
                     case TagType.Byte:
                         builder.AddValue(key, reader.ReadByte());
-                        break;
-
-                    case TagType.Double:
-                        builder.AddValue(key, reader.ReadDouble());
                         break;
 
                     case TagType.Short:
@@ -160,16 +160,16 @@ namespace Vostok.Hercules.Client.Serialization.Readers
                     builder.AddVector(key, reader.ReadArray(r => r.ReadInt32()));
                     break;
 
+                case TagType.Double:
+                    builder.AddVector(key, reader.ReadArray(r => r.ReadDouble()));
+                    break;
+
                 case TagType.Flag:
                     builder.AddVector(key, reader.ReadArray(r => r.ReadBool()));
                     break;
 
                 case TagType.Byte:
                     builder.AddVector(key, reader.ReadByteArray());
-                    break;
-
-                case TagType.Double:
-                    builder.AddVector(key, reader.ReadArray(r => r.ReadDouble()));
                     break;
 
                 case TagType.Short:
