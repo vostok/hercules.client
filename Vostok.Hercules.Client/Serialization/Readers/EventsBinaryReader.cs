@@ -73,48 +73,48 @@ namespace Vostok.Hercules.Client.Serialization.Readers
 
                 switch (valueType)
                 {
-                    case TagType.Container:
-                        builder.AddContainer(key, b => ReadContainer(reader, b));
-                        break;
-
-                    case TagType.Byte:
-                        builder.AddValue(key, reader.ReadByte());
-                        break;
-
-                    case TagType.Short:
-                        builder.AddValue(key, reader.ReadInt16());
-                        break;
-
-                    case TagType.Integer:
-                        builder.AddValue(key, reader.ReadInt32());
+                    case TagType.String:
+                        builder.AddValue(key, reader.ReadString());
                         break;
 
                     case TagType.Long:
                         builder.AddValue(key, reader.ReadInt64());
                         break;
 
+                    case TagType.Uuid:
+                        builder.AddValue(key, reader.ReadGuid());
+                        break;
+
+                    case TagType.Container:
+                        builder.AddContainer(key, b => ReadContainer(reader, b));
+                        break;
+
+                    case TagType.Integer:
+                        builder.AddValue(key, reader.ReadInt32());
+                        break;
+
                     case TagType.Flag:
                         builder.AddValue(key, reader.ReadBool());
                         break;
 
-                    case TagType.Float:
-                        builder.AddValue(key, reader.ReadFloat());
+                    case TagType.Null:
+                        builder.AddNull(key);
+                        break;
+
+                    case TagType.Byte:
+                        builder.AddValue(key, reader.ReadByte());
                         break;
 
                     case TagType.Double:
                         builder.AddValue(key, reader.ReadDouble());
                         break;
 
-                    case TagType.String:
-                        builder.AddValue(key, reader.ReadString());
+                    case TagType.Short:
+                        builder.AddValue(key, reader.ReadInt16());
                         break;
 
-                    case TagType.Uuid:
-                        builder.AddValue(key, reader.ReadGuid());
-                        break;
-
-                    case TagType.Null:
-                        builder.AddNull(key);
+                    case TagType.Float:
+                        builder.AddValue(key, reader.ReadFloat());
                         break;
 
                     case TagType.Vector:
@@ -133,6 +133,18 @@ namespace Vostok.Hercules.Client.Serialization.Readers
 
             switch (elementType)
             {
+                case TagType.String:
+                    builder.AddVector(key, reader.ReadArray(r => r.ReadString()));
+                    break;
+
+                case TagType.Long:
+                    builder.AddVector(key, reader.ReadArray(r => r.ReadInt64()));
+                    break;
+
+                case TagType.Uuid:
+                    builder.AddVector(key, reader.ReadArray(r => r.ReadGuid()));
+                    break;
+
                 case TagType.Container:
                     var elementsCount = reader.ReadInt32();
                     var valueBuilder = new Action<IHerculesTagsBuilder>(b => ReadContainer(reader, b));
@@ -144,47 +156,35 @@ namespace Vostok.Hercules.Client.Serialization.Readers
                     builder.AddVectorOfContainers(key, valueBuilders);
                     break;
 
-                case TagType.Byte:
-                    builder.AddVector(key, reader.ReadByteArray());
-                    break;
-
-                case TagType.Short:
-                    builder.AddVector(key, reader.ReadArray(r => r.ReadInt16()));
-                    break;
-
                 case TagType.Integer:
                     builder.AddVector(key, reader.ReadArray(r => r.ReadInt32()));
-                    break;
-
-                case TagType.Long:
-                    builder.AddVector(key, reader.ReadArray(r => r.ReadInt64()));
                     break;
 
                 case TagType.Flag:
                     builder.AddVector(key, reader.ReadArray(r => r.ReadBool()));
                     break;
 
-                case TagType.Float:
-                    builder.AddVector(key, reader.ReadArray(r => r.ReadFloat()));
+                case TagType.Byte:
+                    builder.AddVector(key, reader.ReadByteArray());
                     break;
 
                 case TagType.Double:
                     builder.AddVector(key, reader.ReadArray(r => r.ReadDouble()));
                     break;
 
-                case TagType.String:
-                    builder.AddVector(key, reader.ReadArray(r => r.ReadString()));
+                case TagType.Short:
+                    builder.AddVector(key, reader.ReadArray(r => r.ReadInt16()));
                     break;
 
-                case TagType.Uuid:
-                    builder.AddVector(key, reader.ReadArray(r => r.ReadGuid()));
+                case TagType.Float:
+                    builder.AddVector(key, reader.ReadArray(r => r.ReadFloat()));
                     break;
-
-                case TagType.Null:
-                    throw new NotSupportedException("Vectors of nulls are not supported yet.");
 
                 case TagType.Vector:
                     throw new NotSupportedException("Nested vectors are not supported yet.");
+
+                case TagType.Null:
+                    throw new NotSupportedException("Vectors of nulls are not supported yet.");
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(elementType), elementType, "Unexpected vector element type.");
