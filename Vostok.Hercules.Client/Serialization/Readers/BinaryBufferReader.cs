@@ -1,13 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
-using JetBrains.Annotations;
 using Vostok.Hercules.Client.Abstractions.Events;
 
 namespace Vostok.Hercules.Client.Serialization.Readers
 {
     internal class BinaryBufferReader : Commons.Binary.BinaryBufferReader, IBinaryBufferReader
     {
-        public BinaryBufferReader([NotNull] byte[] buffer, long position)
+        public BinaryBufferReader(byte[] buffer, long position)
             : base(buffer, position)
         {
         }

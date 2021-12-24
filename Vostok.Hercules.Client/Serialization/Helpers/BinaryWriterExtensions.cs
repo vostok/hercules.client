@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using Vostok.Commons.Binary;
 using Vostok.Hercules.Client.Serialization.Builders;
 
@@ -12,9 +11,9 @@ namespace Vostok.Hercules.Client.Serialization.Helpers
             writer.Write((byte)valueType);
 
         public static void WriteReadOnlyCollection<T>(
-            [NotNull] this IBinaryWriter writer,
-            [NotNull] IReadOnlyCollection<T> items,
-            [NotNull] Action<IBinaryWriter, T> writeSingleValue)
+            this IBinaryWriter writer,
+            IReadOnlyCollection<T> items,
+            Action<IBinaryWriter, T> writeSingleValue)
         {
             writer.Write(items.Count);
 
