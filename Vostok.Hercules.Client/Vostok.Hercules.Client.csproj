@@ -7,7 +7,6 @@
   <Import Project="..\..\vostok.commons.binary\BinaryBufferWriter.props" Condition="Exists('..\..\vostok.commons.binary\BinaryBufferWriter.props')" />
   <PropertyGroup>
     <Configurations>Debug;Release</Configurations>
-    <LangVersion>7.2</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
