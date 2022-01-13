@@ -1,3 +1,7 @@
+## 0.1.19 (13-01-2022):
+
+Optimize GUID creation in .Net 6. Optimize GUID creation in Windows.
+
 ## 0.1.18 (06-12-2021):
 
 Added `net6.0` target.
