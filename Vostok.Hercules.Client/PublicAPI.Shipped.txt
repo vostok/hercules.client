@@ -1,0 +1,129 @@
+static readonly Vostok.Hercules.Client.HerculesSinkCounters.Zero -> Vostok.Hercules.Client.HerculesSinkCounters
+static Vostok.Hercules.Client.HerculesSinkCounters.operator +(Vostok.Hercules.Client.HerculesSinkCounters left, Vostok.Hercules.Client.HerculesSinkCounters right) -> Vostok.Hercules.Client.HerculesSinkCounters
+static Vostok.Hercules.Client.HerculesSinkCounters.operator -(Vostok.Hercules.Client.HerculesSinkCounters left, Vostok.Hercules.Client.HerculesSinkCounters right) -> Vostok.Hercules.Client.HerculesSinkCounters
+Vostok.Hercules.Client.HerculesGateClient
+Vostok.Hercules.Client.HerculesGateClient.HerculesGateClient(Vostok.Hercules.Client.HerculesGateClientSettings settings, Vostok.Logging.Abstractions.ILog log) -> void
+Vostok.Hercules.Client.HerculesGateClient.InsertAsync(Vostok.Hercules.Client.Abstractions.Queries.InsertEventsQuery query, System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.InsertEventsResult>
+Vostok.Hercules.Client.HerculesGateClientSettings
+Vostok.Hercules.Client.HerculesGateClientSettings.AdditionalSetup.get -> Vostok.Clusterclient.Core.ClusterClientSetup
+Vostok.Hercules.Client.HerculesGateClientSettings.AdditionalSetup.set -> void
+Vostok.Hercules.Client.HerculesGateClientSettings.ApiKeyProvider.get -> System.Func<string>
+Vostok.Hercules.Client.HerculesGateClientSettings.Cluster.get -> Vostok.Clusterclient.Core.Topology.IClusterProvider
+Vostok.Hercules.Client.HerculesGateClientSettings.HerculesGateClientSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, System.Func<string> apiKeyProvider) -> void
+Vostok.Hercules.Client.HerculesGateClientSettings.MaxPooledBufferSize.get -> int
+Vostok.Hercules.Client.HerculesGateClientSettings.MaxPooledBufferSize.set -> void
+Vostok.Hercules.Client.HerculesGateClientSettings.MaxPooledBuffersPerBucket.get -> int
+Vostok.Hercules.Client.HerculesGateClientSettings.MaxPooledBuffersPerBucket.set -> void
+Vostok.Hercules.Client.HerculesManagementClient
+Vostok.Hercules.Client.HerculesManagementClient.CreateStreamAsync(Vostok.Hercules.Client.Abstractions.Queries.CreateStreamQuery query, System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.HerculesResult>
+Vostok.Hercules.Client.HerculesManagementClient.CreateTimelineAsync(Vostok.Hercules.Client.Abstractions.Queries.CreateTimelineQuery query, System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.HerculesResult>
+Vostok.Hercules.Client.HerculesManagementClient.DeleteStreamAsync(string name, System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.DeleteStreamResult>
+Vostok.Hercules.Client.HerculesManagementClient.DeleteTimelineAsync(string name, System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.DeleteTimelineResult>
+Vostok.Hercules.Client.HerculesManagementClient.GetStreamDescriptionAsync(string name, System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.HerculesResult<Vostok.Hercules.Client.Abstractions.Models.StreamDescription>>
+Vostok.Hercules.Client.HerculesManagementClient.GetTimelineDescriptionAsync(string name, System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.HerculesResult<Vostok.Hercules.Client.Abstractions.Models.TimelineDescription>>
+Vostok.Hercules.Client.HerculesManagementClient.HerculesManagementClient(Vostok.Hercules.Client.HerculesManagementClientSettings settings, Vostok.Logging.Abstractions.ILog log) -> void
+Vostok.Hercules.Client.HerculesManagementClient.ListStreamsAsync(System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.HerculesResult<string[]>>
+Vostok.Hercules.Client.HerculesManagementClient.ListTimelinesAsync(System.TimeSpan timeout) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.HerculesResult<string[]>>
+Vostok.Hercules.Client.HerculesManagementClientSettings
+Vostok.Hercules.Client.HerculesManagementClientSettings.AdditionalSetup.get -> Vostok.Clusterclient.Core.ClusterClientSetup
+Vostok.Hercules.Client.HerculesManagementClientSettings.AdditionalSetup.set -> void
+Vostok.Hercules.Client.HerculesManagementClientSettings.ApiKeyProvider.get -> System.Func<string>
+Vostok.Hercules.Client.HerculesManagementClientSettings.Cluster.get -> Vostok.Clusterclient.Core.Topology.IClusterProvider
+Vostok.Hercules.Client.HerculesManagementClientSettings.HerculesManagementClientSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, System.Func<string> apiKeyProvider) -> void
+Vostok.Hercules.Client.HerculesSink
+Vostok.Hercules.Client.HerculesSink.ConfigureStream(string stream, Vostok.Hercules.Client.Abstractions.Models.StreamSettings streamSettings) -> void
+Vostok.Hercules.Client.HerculesSink.Dispose() -> void
+Vostok.Hercules.Client.HerculesSink.GetStatistics() -> Vostok.Hercules.Client.HerculesSinkStatistics
+Vostok.Hercules.Client.HerculesSink.HerculesSink(Vostok.Hercules.Client.HerculesSinkSettings settings, Vostok.Logging.Abstractions.ILog log) -> void
+Vostok.Hercules.Client.HerculesSink.Put(string streamName, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder> build) -> void
+Vostok.Hercules.Client.HerculesSinkCounters
+Vostok.Hercules.Client.HerculesSinkCounters.Capacity.get -> long
+Vostok.Hercules.Client.HerculesSinkCounters.RecordsLostDueToBuildFailures.get -> long
+Vostok.Hercules.Client.HerculesSinkCounters.RecordsLostDueToOverflows.get -> long
+Vostok.Hercules.Client.HerculesSinkCounters.RecordsLostDueToSizeLimit.get -> long
+Vostok.Hercules.Client.HerculesSinkCounters.RejectedRecords.get -> (long Count, long Size)
+Vostok.Hercules.Client.HerculesSinkCounters.SentRecords.get -> (long Count, long Size)
+Vostok.Hercules.Client.HerculesSinkCounters.StoredRecords.get -> (long Count, long Size)
+Vostok.Hercules.Client.HerculesSinkCounters.TotalLostRecords.get -> long
+Vostok.Hercules.Client.HerculesSinkGcSettings
+Vostok.Hercules.Client.HerculesSinkGcSettings.BaseDelayAfterReserve.get -> System.TimeSpan
+Vostok.Hercules.Client.HerculesSinkGcSettings.BaseDelayAfterReserve.set -> void
+Vostok.Hercules.Client.HerculesSinkGcSettings.Cooldown.get -> System.TimeSpan
+Vostok.Hercules.Client.HerculesSinkGcSettings.Cooldown.set -> void
+Vostok.Hercules.Client.HerculesSinkGcSettings.HerculesSinkGcSettings() -> void
+Vostok.Hercules.Client.HerculesSinkGcSettings.MinimumBuffersLimit.get -> int
+Vostok.Hercules.Client.HerculesSinkGcSettings.MinimumBuffersLimit.set -> void
+Vostok.Hercules.Client.HerculesSinkGcSettings.MinimumGlobalMemoryLimitUtilization.get -> double
+Vostok.Hercules.Client.HerculesSinkGcSettings.MinimumGlobalMemoryLimitUtilization.set -> void
+Vostok.Hercules.Client.HerculesSinkGcSettings.MinimumStreamMemoryLimitUtilization.get -> double
+Vostok.Hercules.Client.HerculesSinkGcSettings.MinimumStreamMemoryLimitUtilization.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings
+Vostok.Hercules.Client.HerculesSinkSettings.AdditionalSetup.get -> Vostok.Clusterclient.Core.ClusterClientSetup
+Vostok.Hercules.Client.HerculesSinkSettings.AdditionalSetup.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.ApiKeyProvider.get -> System.Func<string>
+Vostok.Hercules.Client.HerculesSinkSettings.Cluster.get -> Vostok.Clusterclient.Core.Topology.IClusterProvider
+Vostok.Hercules.Client.HerculesSinkSettings.GcSettings.get -> Vostok.Hercules.Client.HerculesSinkGcSettings
+Vostok.Hercules.Client.HerculesSinkSettings.GcSettings.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.HerculesSinkSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, System.Func<string> apiKeyProvider) -> void
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumBatchSize.get -> int
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumBatchSize.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumMemoryConsumption.get -> long
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumMemoryConsumption.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumPerStreamMemoryConsumption.get -> long
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumPerStreamMemoryConsumption.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumRecordSize.get -> int
+Vostok.Hercules.Client.HerculesSinkSettings.MaximumRecordSize.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.MaxParallelStreams.get -> int
+Vostok.Hercules.Client.HerculesSinkSettings.MaxParallelStreams.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.RequestTimeout.get -> System.TimeSpan
+Vostok.Hercules.Client.HerculesSinkSettings.RequestTimeout.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.SendPeriod.get -> System.TimeSpan
+Vostok.Hercules.Client.HerculesSinkSettings.SendPeriod.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.SendPeriodCap.get -> System.TimeSpan
+Vostok.Hercules.Client.HerculesSinkSettings.SendPeriodCap.set -> void
+Vostok.Hercules.Client.HerculesSinkSettings.SuppressVerboseLogging.get -> bool
+Vostok.Hercules.Client.HerculesSinkSettings.SuppressVerboseLogging.set -> void
+Vostok.Hercules.Client.HerculesSinkStatistics
+Vostok.Hercules.Client.HerculesSinkStatistics.HerculesSinkStatistics(Vostok.Hercules.Client.HerculesSinkCounters total, System.Collections.Generic.IReadOnlyDictionary<string, Vostok.Hercules.Client.HerculesSinkCounters> perStream) -> void
+Vostok.Hercules.Client.HerculesSinkStatistics.PerStream.get -> System.Collections.Generic.IReadOnlyDictionary<string, Vostok.Hercules.Client.HerculesSinkCounters>
+Vostok.Hercules.Client.HerculesSinkStatistics.Total.get -> Vostok.Hercules.Client.HerculesSinkCounters
+Vostok.Hercules.Client.HerculesStreamClient
+Vostok.Hercules.Client.HerculesStreamClient.HerculesStreamClient(Vostok.Hercules.Client.HerculesStreamClientSettings settings, Vostok.Logging.Abstractions.ILog log) -> void
+Vostok.Hercules.Client.HerculesStreamClient.ReadAsync(Vostok.Hercules.Client.Abstractions.Queries.ReadStreamQuery query, System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.ReadStreamResult>
+Vostok.Hercules.Client.HerculesStreamClient.SeekToEndAsync(Vostok.Hercules.Client.Abstractions.Queries.SeekToEndStreamQuery query, System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.SeekToEndStreamResult>
+Vostok.Hercules.Client.HerculesStreamClient<T>
+Vostok.Hercules.Client.HerculesStreamClient<T>.HerculesStreamClient(Vostok.Hercules.Client.HerculesStreamClientSettings<T> settings, Vostok.Logging.Abstractions.ILog log) -> void
+Vostok.Hercules.Client.HerculesStreamClient<T>.ReadAsync(Vostok.Hercules.Client.Abstractions.Queries.ReadStreamQuery query, System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.ReadStreamResult<T>>
+Vostok.Hercules.Client.HerculesStreamClient<T>.SeekToEndAsync(Vostok.Hercules.Client.Abstractions.Queries.SeekToEndStreamQuery query, System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.SeekToEndStreamResult>
+Vostok.Hercules.Client.HerculesStreamClientSettings
+Vostok.Hercules.Client.HerculesStreamClientSettings.HerculesStreamClientSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, System.Func<string> apiKeyProvider) -> void
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.AdditionalSetup.get -> Vostok.Clusterclient.Core.ClusterClientSetup
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.AdditionalSetup.set -> void
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.ApiKeyProvider.get -> System.Func<string>
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.Cluster.get -> Vostok.Clusterclient.Core.Topology.IClusterProvider
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.EventBuilderProvider.get -> System.Func<Vostok.Hercules.Client.Abstractions.Events.IBinaryBufferReader, Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<T>>
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.HerculesStreamClientSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, System.Func<string> apiKeyProvider, System.Func<Vostok.Hercules.Client.Abstractions.Events.IBinaryBufferReader, Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<T>> eventBuilderProvider) -> void
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.MaxPooledBufferSize.get -> int
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.MaxPooledBufferSize.set -> void
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.MaxPooledBuffersPerBucket.get -> int
+Vostok.Hercules.Client.HerculesStreamClientSettings<T>.MaxPooledBuffersPerBucket.set -> void
+Vostok.Hercules.Client.HerculesTimelineClient
+Vostok.Hercules.Client.HerculesTimelineClient.HerculesTimelineClient(Vostok.Hercules.Client.HerculesTimelineClientSettings settings, Vostok.Logging.Abstractions.ILog log) -> void
+Vostok.Hercules.Client.HerculesTimelineClient.ReadAsync(Vostok.Hercules.Client.Abstractions.Queries.ReadTimelineQuery query, System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.ReadTimelineResult>
+Vostok.Hercules.Client.HerculesTimelineClient<T>
+Vostok.Hercules.Client.HerculesTimelineClient<T>.HerculesTimelineClient(Vostok.Hercules.Client.HerculesTimelineClientSettings<T> settings, Vostok.Logging.Abstractions.ILog log) -> void
+Vostok.Hercules.Client.HerculesTimelineClient<T>.ReadAsync(Vostok.Hercules.Client.Abstractions.Queries.ReadTimelineQuery query, System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Vostok.Hercules.Client.Abstractions.Results.ReadTimelineResult<T>>
+Vostok.Hercules.Client.HerculesTimelineClientSettings
+Vostok.Hercules.Client.HerculesTimelineClientSettings.HerculesTimelineClientSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, System.Func<string> apiKeyProvider) -> void
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.AdditionalSetup.get -> Vostok.Clusterclient.Core.ClusterClientSetup
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.AdditionalSetup.set -> void
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.ApiKeyProvider.get -> System.Func<string>
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.Cluster.get -> Vostok.Clusterclient.Core.Topology.IClusterProvider
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.EventBuilderProvider.get -> System.Func<Vostok.Hercules.Client.Abstractions.Events.IBinaryBufferReader, Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<T>>
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.HerculesTimelineClientSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, System.Func<string> apiKeyProvider, System.Func<Vostok.Hercules.Client.Abstractions.Events.IBinaryBufferReader, Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<T>> eventBuilderProvider) -> void
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.MaxPooledBufferSize.get -> int
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.MaxPooledBufferSize.set -> void
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.MaxPooledBuffersPerBucket.get -> int
+Vostok.Hercules.Client.HerculesTimelineClientSettings<T>.MaxPooledBuffersPerBucket.set -> void
