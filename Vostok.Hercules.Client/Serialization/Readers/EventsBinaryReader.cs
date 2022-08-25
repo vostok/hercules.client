@@ -62,7 +62,8 @@ namespace Vostok.Hercules.Client.Serialization.Readers
             return builder.BuildEvent();
         }
 
-        private static void ReadContainer(IBinaryReader reader, IHerculesTagsBuilder builder)
+        // ReSharper disable once MemberCanBePrivate.Global
+        public static void ReadContainer(IBinaryReader reader, IHerculesTagsBuilder builder)
         {
             var tagsCount = reader.ReadInt16();
 
