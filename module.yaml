@@ -12,7 +12,7 @@ notests *default:
 
   deps:
     - vostok.devtools
-    - vostok.hercules.client.abstractions@custom-metrics
+    - vostok.hercules.client.abstractions
     - vostok.logging.abstractions
     - vostok.clusterclient.core
     - vostok.clusterclient.transport
