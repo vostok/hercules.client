@@ -4,7 +4,7 @@ using Vostok.Hercules.Client.Abstractions.Events;
 
 namespace Vostok.Hercules.Client.Serialization.Readers
 {
-    internal class BinaryBufferReader : Commons.Binary.BinaryBufferReader, IBinaryBufferReader
+    internal class BinaryBufferReader : Commons.Binary.BinaryBufferReader, IBinaryEventsReader
     {
         public BinaryBufferReader(byte[] buffer, long position)
             : base(buffer, position)
@@ -38,5 +38,8 @@ namespace Vostok.Hercules.Client.Serialization.Readers
 
             return base.ReadShortString(encoding);
         }
+
+        public void ReadContainer(IHerculesTagsBuilder builder) =>
+            EventsBinaryReader.ReadContainer(this, builder);
     }
 }
