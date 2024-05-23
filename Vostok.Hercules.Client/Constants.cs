@@ -8,6 +8,7 @@ namespace Vostok.Hercules.Client
         {
             public const string Gate = "Hercules.Gate";
             public const string StreamApi = "Hercules.StreamApi";
+            public const string StreamApiLoadTest = "Hercules.StreamApi.LoadTest";
             public const string TimelineApi = "Hercules.TimelineApi";
             public const string ManagementApi = "Hercules.ManagementApi";
         }

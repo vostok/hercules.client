@@ -41,7 +41,7 @@ namespace Vostok.Hercules.Client.Internal
             client = ClusterClientFactory.Create(
                 clusterProvider,
                 log,
-                Constants.ServiceNames.StreamApi,
+                Constants.ServiceNames.StreamApiLoadTest,
                 config =>
                 {
                     config.SetupUniversalTransport(
