@@ -121,6 +121,20 @@ namespace Vostok.Hercules.Client.Serialization.Builders
             return this;
         }
 
+        public IHerculesTagsBuilder AddVectorOfContainers<TValue>(string key, IReadOnlyList<TValue> values, Action<IHerculesTagsBuilder, TValue> valueBuilder)
+        {
+            writer.WriteWithByteLength(key);
+            writer.Write(TagType.Vector);
+            writer.Write(TagType.Container);
+            writer.Write(values.Count);
+
+            foreach (var value in values)
+                using (var builder = new BinaryCountingTagsBuilder(writer))
+                    valueBuilder(builder, value);
+
+            return this;
+        }
+
         public IHerculesTagsBuilder AddNull(string key)
         {
             writer.WriteWithByteLength(key);

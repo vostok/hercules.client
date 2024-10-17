@@ -112,6 +112,14 @@ namespace Vostok.Hercules.Client.Serialization.Builders
             return this;
         }
 
+        public IHerculesTagsBuilder AddVectorOfContainers<TValue>(string key, IReadOnlyList<TValue> values, Action<IHerculesTagsBuilder, TValue> valueBuilder)
+        {
+            IncrementCounter();
+            builder.AddVectorOfContainers(key, values, valueBuilder);
+
+            return this;
+        }
+
         public IHerculesTagsBuilder AddNull(string key)
         {
             IncrementCounter();

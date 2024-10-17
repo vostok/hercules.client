@@ -43,6 +43,9 @@ namespace Vostok.Hercules.Client.Serialization.Builders
         public IHerculesTagsBuilder AddVectorOfContainers(string key, IReadOnlyList<Action<IHerculesTagsBuilder>> valueBuilders)
             => tagsBuilder.AddVectorOfContainers(key, valueBuilders);
 
+        public IHerculesTagsBuilder AddVectorOfContainers<TValue>(string key, IReadOnlyList<TValue> values, Action<IHerculesTagsBuilder, TValue> valueBuilder)
+            => tagsBuilder.AddVectorOfContainers(key, values, valueBuilder);
+
         public IHerculesTagsBuilder AddNull(string key)
             => tagsBuilder.AddNull(key);
 

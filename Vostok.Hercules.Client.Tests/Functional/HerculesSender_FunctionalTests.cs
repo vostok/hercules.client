@@ -112,6 +112,12 @@ namespace Vostok.Hercules.Client.Tests.Functional
                                 .AddValue("inner", "y")
                                 .AddVector("innerVec", new long[] {1, 3, 5})
                         })
+                    .AddVectorOfContainers(
+                        "containerVec2",
+                        new []{"a", "b", "c"},
+                        (bld, s) =>  bld
+                            .AddValue("inner", "z")
+                            .AddValue("innerVectorValue", s))
                     .AddVectorOfContainers("emptyContainerVec", new Action<IHerculesTagsBuilder>[0])
             );
         }
