@@ -1,3 +1,7 @@
+## 0.1.20 (17-10-2024):
+
+Realize new method from `IHerculesTagsBuilder` interface. 
+
 ## 0.1.19 (13-01-2022):
 
 Optimize GUID creation in .Net 6. Optimize GUID creation in Windows.
