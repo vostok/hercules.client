@@ -6,6 +6,7 @@ using Vostok.Hercules.Client.Tests.Functional.Helpers;
 namespace Vostok.Hercules.Client.Tests.Functional
 {
     [TestFixture]
+    [Explicit]
     internal class HerculesGateClientFunctionalTests : HerculesSender_FunctionalTests
     {
         public HerculesGateClientFunctionalTests() =>

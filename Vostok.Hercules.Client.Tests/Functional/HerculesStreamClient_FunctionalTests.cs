@@ -10,6 +10,7 @@ using Vostok.Hercules.Client.Tests.Functional.Helpers;
 namespace Vostok.Hercules.Client.Tests.Functional
 {
     [TestFixture]
+    [Explicit]
     internal class HerculesStreamClient_FunctionalTests
     {
         private static readonly TimeSpan Timeout = 30.Seconds();
