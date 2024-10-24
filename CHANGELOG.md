@@ -1,4 +1,4 @@
-## 0.1.20 (17-10-2024):
+## 0.1.21 (17-10-2024):
 
 Realize new method from `IHerculesTagsBuilder` interface. 
 
