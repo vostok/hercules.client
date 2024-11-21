@@ -1,3 +1,7 @@
+## 0.1.24 (21-11-2024):
+
+Rebuild nuget package to use new version of `Vostok.ClusterClient.Transport`.
+
 ## 0.1.21 (17-10-2024):
 
 Realize new method from `IHerculesTagsBuilder` interface. 
