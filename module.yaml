@@ -9,6 +9,25 @@ notests *default:
     - Vostok.Hercules.Client/bin/Release/netstandard2.0/Vostok.Hercules.Client.dll
     - module vostok.hercules.client.abstractions
     - module vostok.clusterclient.core
+    - groups:
+        - target-framework: "netstandard2.0"
+          libraries:
+            - Vostok.Hercules.Client/bin/Release/netstandard2.0/Vostok.Hercules.Client.dll
+          modules:
+            - name: vostok.clusterclient.core
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.Hercules.Client/bin/Release/net6.0/Vostok.Hercules.Client.dll
+          modules:
+            - name: vostok.clusterclient.core
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.Hercules.Client/bin/Release/net8.0/Vostok.Hercules.Client.dll
+          modules:
+            - name: vostok.clusterclient.core
+            - name: vostok.hercules.client.abstractions
 
   deps:
     - vostok.devtools
@@ -29,6 +48,30 @@ full-build > notests:
     - vostok.hercules.local
     - vostok.logging.console
     - vostok.commons.testing/src
+
+  install:
+    - Vostok.Hercules.Client/bin/Release/netstandard2.0/Vostok.Hercules.Client.dll
+    - module vostok.hercules.client.abstractions
+    - module vostok.clusterclient.core
+    - groups:
+        - target-framework: "netstandard2.0"
+          libraries:
+            - Vostok.Hercules.Client/bin/Release/netstandard2.0/Vostok.Hercules.Client.dll
+          modules:
+            - name: vostok.clusterclient.core
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.Hercules.Client/bin/Release/net6.0/Vostok.Hercules.Client.dll
+          modules:
+            - name: vostok.clusterclient.core
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.Hercules.Client/bin/Release/net8.0/Vostok.Hercules.Client.dll
+          modules:
+            - name: vostok.clusterclient.core
+            - name: vostok.hercules.client.abstractions
 
   build:
     target: Vostok.Hercules.Client.sln
