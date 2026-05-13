@@ -87,8 +87,11 @@ namespace Vostok.Hercules.Client.Serialization.Readers
                         break;
 
                     case TagType.Container:
-                        builder.AddContainer(key, b => ReadContainer(reader, b));
+                    {
+                        var readerCopy = reader;
+                        builder.AddContainer(key, b => ReadContainer(readerCopy, b));
                         break;
+                    }
 
                     case TagType.Integer:
                         builder.AddValue(key, reader.ReadInt32());
